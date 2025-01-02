@@ -1,0 +1,31 @@
+version: 2
+
+builds:
+  - binary: goblin
+    main: ./cmd/goblin/
+    goos:
+      - darwin
+      - linux
+    goarch:
+      - amd64
+      - arm64
+    env:
+      - CGO_ENABLED=0
+    flags:
+      - -mod=vendor
+
+release:
+  prerelease: auto
+
+universal_binaries:
+  - replace: true
+
+brews:
+  - name: goblin
+    homepage: https://github.com/kryn3n/goblin
+    repository:
+      owner: kryn3n
+      name: homebrew
+    commit_author:
+      name: kryn3n
+      email: krynen@gmx.com
