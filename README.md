@@ -2,6 +2,14 @@
 
 Goblin is a CLI tool for extracting data from ArcGIS Map/Feature Servers. It is written in Go with concurrency in mind, so it excels in extracting relatively large datasets (>1GB). Goblin was created as an alternative to GDAL's [ESRIJSON driver](https://gdal.org/en/stable/drivers/vector/esrijson.html). We found that `ogr2ogr` struggles particularly with larger datasets due to it's non-concurrent nature and the ArcGIS default record limit (usually 1-2K), which results in very long download times and/or disconnection from the server.
 
+## Installation
+
+### 🍺 Brew (MacOS)
+
+The easiest way to install on MacOS is via [Homebrew](https://brew.sh/). Firstly, tap the [third-party repository](https://github.com/kryn3n/homebrew-kryn3n) with `brew tap kryn3n/kryn3n`. You can read more about third-party repositories [here](https://docs.brew.sh/Taps).
+
+Now we can install the program as usual with `brew install kryn3n/kryn3n/goblin`.
+
 ## Usage
 
 The `goblin` command is run with 2 required positional arguments, plus 3 optional flags. The first positional argument should be the URL to the MapServer or FeatureServer, the second should be the output filename (recommended to use `.geojsonl` as Goblin creates a [newline-delimited GeoJSON](https://en.wikipedia.org/wiki/GeoJSON#Newline-delimited_GeoJSON) file. You can read more about the format [here](https://stevage.github.io/ndgeojson/)). The optional flags can be found below.
