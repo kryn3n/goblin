@@ -25,7 +25,7 @@ brews:
     homepage: https://github.com/kryn3n/goblin
     repository:
       owner: kryn3n
-      name: homebrew
+      name: homebrew-kryn3n
     commit_author:
       name: kryn3n
       email: krynen@gmx.com
