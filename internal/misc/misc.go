@@ -1,23 +1,23 @@
 package misc
 
 import (
+	_ "embed"
 	"fmt"
 	"log"
 	"net/url"
-	"os"
 	"strconv"
 	"strings"
 )
+
+//go:embed ascii.txt
+var b []byte
 
 func WelcomeMessage() {
 	var (
 		Green = "\033[32m"
 		Reset = "\033[0m"
 	)
-	b, err := os.ReadFile("../../assets/ascii.txt")
-	if err != nil {
-		panic(err)
-	}
+
 	fmt.Printf("Welcome to...%s%s%s", Green, b, Reset)
 }
 
