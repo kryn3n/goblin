@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
-	"log"
 	"net/http"
 	"net/url"
 	"os"
@@ -68,13 +67,11 @@ func (s *Server) GetServerInfo() {
 	}
 	metadataURL := misc.FormatURL(s.URL, "", &values)
 	r, err := http.Get(metadataURL)
-	if err != nil {
-		fmt.Println(err)
-	}
+	misc.Check(err)
+
 	data, err := io.ReadAll(r.Body)
-	if err != nil {
-		fmt.Println(err)
-	}
+	misc.Check(err)
+
 	json.Unmarshal(data, &s)
 }
 
@@ -95,13 +92,11 @@ func (s *Server) GetRecordCount() {
 
 	queryURL := misc.FormatURL(s.LayerUrl, queryPath, &values)
 	r, err := http.Get(queryURL)
-	if err != nil {
-		fmt.Println(err)
-	}
+	misc.Check(err)
+
 	data, err := io.ReadAll(r.Body)
-	if err != nil {
-		fmt.Println(err)
-	}
+	misc.Check(err)
+
 	json.Unmarshal(data, &countResponse)
 	s.RecordCount = countResponse.Count
 }
@@ -121,16 +116,12 @@ func (s *Server) GetObjectIds() {
 	queryURL := misc.FormatURL(s.LayerUrl, queryPath, &values)
 
 	response, error := http.Get(queryURL)
-	if error != nil {
-		fmt.Println(error)
-		log.Fatal()
-	}
+	misc.Check(error)
+
 	defer response.Body.Close()
 	body, error := io.ReadAll(response.Body)
-	if error != nil {
-		fmt.Println(error)
-		log.Fatal()
-	}
+	misc.Check(error)
+
 	json.Unmarshal(body, &objectIdsResponse)
 	s.ObjectIdField = objectIdsResponse.ObjectIdFieldName
 	s.ObjectIds = objectIdsResponse.ObjectIds
