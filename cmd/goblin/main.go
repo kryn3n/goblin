@@ -6,19 +6,12 @@ import (
 	"fmt"
 	"log"
 	"slices"
-	"time"
 
 	"github.com/kryn3n/goblin/internal/arcgis"
 	"github.com/kryn3n/goblin/internal/misc"
 )
 
 func main() {
-	now := time.Now()
-
-	defer func() {
-		fmt.Println(time.Since(now))
-	}()
-
 	var server arcgis.Server
 
 	flag.IntVar(&server.RecordLimit, "m", 1000, "record limit")
