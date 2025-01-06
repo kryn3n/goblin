@@ -1,6 +1,6 @@
 # ![goblin](assets/Goblin.png)
 
-Goblin is a CLI tool for extracting data from ArcGIS Map/Feature Servers. It is written in Go with concurrency in mind, so it excels in extracting relatively large datasets (>1GB). Goblin was created as an alternative to GDAL's [ESRIJSON driver](https://gdal.org/en/stable/drivers/vector/esrijson.html). We found that `ogr2ogr` struggles particularly with larger datasets due to it's non-concurrent nature and the ArcGIS default record limit (usually 1-2K), which results in very long download times and/or disconnection from the server.
+Goblin is a CLI tool for extracting data from ArcGIS Map/Feature Servers. It is written in Go with concurrency in mind, so it excels in extracting relatively large datasets (>1GB). Goblin was created as an alternative to GDAL's [ESRIJSON driver](https://gdal.org/en/stable/drivers/vector/esrijson.html). We found that `ogr2ogr` struggles particularly with larger datasets due to its non-concurrent nature and the ArcGIS default record limit (usually 1-2K), which results in very long download times and/or disconnection from the server.
 
 ## Installation
 
@@ -17,7 +17,7 @@ The `goblin` command is run with 2 required positional arguments, plus 3 optiona
 | Flag | Description       | Required | Default |
 | ---- | ----------------- | -------- | ------- |
 | `-c` | Concurrency limit | No       | 100     |
-| `-l` | Layer ID          | No       | -1      |
+| `-l` | Layer ID          | Yes      | -1      |
 | `-m` | Max. record limit | No       | 1000    |
 
 If no layer ID is supplied, you will be prompted for it after running your command.
